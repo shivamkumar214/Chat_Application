@@ -1,0 +1,6 @@
+{
+    "tailwindCSS.showPixelEquivalents": false,
+    "diffEditor.experimental.showEmptyDecorations": false,
+    "editor.rename.enablePreview": true,
+    "tailwindCSS.codeActions": true
+}
