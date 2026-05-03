@@ -19,13 +19,26 @@ const Sidebar = () => {
     const filteredUsers = input ? users.filter((user) => 
         user.fullName.toLowerCase().includes(input.toLowerCase())) : users;
 
+    const [open, setOpen] = useState(false);
+
     useEffect(() => {
         getUsers();
     }, [onlineUsers])
 
+    useEffect(() => {
+         if (!open) return;
+
+        const timer = setTimeout(() => {
+            setOpen(false);
+            console.log("i am setTimeout")
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [open]);
+
   return (
     <div className={`bg-[#8185B2]/10 h-full p-5 rounded-r-xl overflow-y-scroll
-    text-white ${selectedUser ?  "max-md:hidden" : ''}`}>
+    text-white ${selectedUser ?  "max-md:hidden" : ''}`}   onClick={() => setOpen(!open)} >
 
         <div className=''>
             <div className='flex  justify-between  items-center '>
@@ -33,14 +46,25 @@ const Sidebar = () => {
 
                 <div className='relative py-2 group'>
 
-                    <img src={assets.menu_icon} alt="Menu" className='max-h-5 cursor-pointer' />
+                    <img src={assets.menu_icon} alt="Menu" className='max-h-5 cursor-pointer' 
+                     onClick={() => setOpen(!open)} />
+                     {console.log(open)}
 
-                    <div className='absolute top-full right-0 z-20 w-32 p-5 rounded-md                    
-                    bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block '>
+                    <div className={`absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] 
+                     border border-gray-600 text-gray-100 ${open ? "block" : "hidden"}`}>
 
-                        <p onClick={() => navigate('/profile')} className='cursor-pointer text-sm'>Edit Profile</p>
+                        <p className='cursor-pointer text-sm'
+                            onClick={() => { navigate('/profile') 
+                                setOpen(false)
+                            }}                    
+                        >Edit Profile</p>
                         <hr className='my-2 border-t border-grey-500'/>
-                        <p onClick={() => logout() } className='cursor-pointer text-sm'>Logout</p>
+                        <p className='cursor-pointer text-sm'
+                            onClick={() => {
+                                logout()
+                                setOpen(false)
+                            }} 
+                        >Logout</p>
 
                     </div>
                 </div>
