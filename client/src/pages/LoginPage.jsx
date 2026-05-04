@@ -55,8 +55,8 @@ const LoginPage = () => {
         )}
 
         {currState === "Sign up" && isDataSubmitted && (
-            <textarea rows={4} className='' placeholder='Provide a short bio...' required
-             onChange={(e) => setBio(e.target.value)} value={bio}></textarea>
+            <textarea rows={4} className='p-2 border rounded-md' placeholder='Provide a short bio...' 
+             required onChange={(e) => setBio(e.target.value)} value={bio}></textarea>
           )
         }
         
