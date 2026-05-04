@@ -10,7 +10,7 @@ const HomePage = () => {
   const {selectedUser, setSelectedUser} = useContext(ChatContext);
 
   return (
-    <div className='border w-full h-screen sm:px-[15%] sm:py-[5%]'>
+    <div className='border w-full h-[100dvh] sm:px-[15%] sm:py-[5%]'>
 
         <div className={`backdrop-blue-xl border-xl border-2 border-grey-600 rounded-2xl
         overflow-hidden h-full grid grid-cols-1 relative ${selectedUser ? 
